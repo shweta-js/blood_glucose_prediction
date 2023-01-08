@@ -1,0 +1,56 @@
+.store{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin:1rem;
+
+}
+.food-inputs{
+    /* background-color: red; */
+    margin:1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.food-inputs>div{
+    margin:1rem;
+
+}
+.food-inputs>div>input{
+    padding:1rem;
+    border-radius: 10px;
+    border-color: black;
+    margin:0.2rem;
+    margin-right:2rem;
+  
+}
+Label{
+    margin:1rem;
+    margin-right:auto;
+    /* background-color: pink; */
+    padding:1rem;
+    color:#e0f0ea;
+    background-color: #3c2a4d;
+    border-radius: 10px;
+    margin-right:2rem;
+    
+    
+}
+.output{
+
+}
+.add{
+    color: #3c2a4d;
+    margin:1rem;
+    padding:1rem;
+    font-size: 3rem;
+    left:0;
+    background-color: white;
+    align-items: left;
+    cursor: pointer;
+}
+.add:hover{
+    color: #563f6b;
+}

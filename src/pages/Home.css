@@ -5,17 +5,27 @@
     justify-content: center;
     align-items: center;
     margin-top:10rem;
-    background-color: red;
-  
+    /* background-color: red;
+   */
 }
 .home>button{
     width:5rem;
     length:10rem;
     margin:1rem;
     padding:1rem;
-
+    background-color: #3c2a4d;
+    border-radius: 10px;
+    width:10rem;
+    border-color: black;
 
 }
-.show-btn{
-  
+.home>button:hover{
+    background-color: #534064;
+}
+.link{
+    color:#e0f0ea;
+    text-decoration: none;
+    font-weight: bold;
+
+
 }

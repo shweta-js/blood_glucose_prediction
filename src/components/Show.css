@@ -1,0 +1,22 @@
+.show{
+    display: flex;
+    flex-direction:column;
+
+
+}
+.calender{
+    margin-left:10rem;
+    padding:1rem;
+    margin:1rem;
+    margin-bottom: 0;
+    
+
+}
+.react-datepicker{
+    margin-top:0;
+    margin:1rem;
+    left:45rem;
+    justify-content: center;
+    align-items: center;
+
+}

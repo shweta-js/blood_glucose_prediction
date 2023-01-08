@@ -3,7 +3,7 @@ import "./Navbar.css"
 const Navbar = () => {
   return (
     <div className="navbar">
-    <h1 className="heading">Navbar</h1>
+    <h1 className="heading">Blood Glucose Prediction</h1>
       
       </div>
   )

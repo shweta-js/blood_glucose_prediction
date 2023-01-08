@@ -6,8 +6,8 @@ const Home = () => {
     <>
     <div className="home">
      
-        <button className="store-btn"><Link to="/store">store</Link></button>
-        <button className="show-btn"><Link to="/show">show</Link></button>
+        <button className="store-btn"><Link className="link" to="/store">store</Link></button>
+        <button className="show-btn"><Link className="link" to="/show">show</Link></button>
     </div>
     </>
   )
