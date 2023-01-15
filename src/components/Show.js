@@ -16,6 +16,16 @@ const Show = () => {
          className="calender"
          onChange={(date) => setStartDate(date)} />
 
+         <div className="show-data">
+          <button className='edit'>edit</button>
+              <h4>food</h4>
+              <p>Banana cake</p>
+              <h4>time</h4>
+              <p>12</p>
+              <h4>glucose level</h4>
+              <p>14.2</p>
+         </div>
+
     </div>
   )
 }

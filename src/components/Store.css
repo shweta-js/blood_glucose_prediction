@@ -11,20 +11,25 @@
     margin:1rem;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    width:50%;
+    
 
 }
-.food-inputs>div{
+
+select,.add-food{
+    width:80%;
+    padding:1rem;
+    border-radius: 10px;
     margin:1rem;
 
 }
-.food-inputs>div>input{
+.timepicker{
+    width:80%;
     padding:1rem;
     border-radius: 10px;
-    border-color: black;
-    margin:0.2rem;
-    margin-right:2rem;
-  
+
+
 }
 Label{
     margin:1rem;
@@ -41,16 +46,20 @@ Label{
 .output{
 
 }
-.add{
-    color: #3c2a4d;
-    margin:1rem;
-    padding:1rem;
-    font-size: 3rem;
-    left:0;
-    background-color: white;
+.add-food{
+    background-color: #3c2a4d;
+  
+    border-radius: 10px;
+
+
+    color: white;
     align-items: left;
     cursor: pointer;
 }
-.add:hover{
-    color: #563f6b;
+.add-food:hover{
+    background-color: #6b567e;
+}
+.output{
+    width:50%;
+    height: 20rem;
 }
