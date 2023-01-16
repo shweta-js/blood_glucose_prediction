@@ -1,102 +1,82 @@
 import React,{useState} from 'react'
 import "./Store.css"
-import { useHistory} from 'react-router-dom'
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import {Line} from 'react-chartjs-2'
-import {TimePicker} from 'react-ios-time-picker';
-import {Chart as ChartJS,Title,Tooltip,LineElement,Legend, CategoryScale, LinearScale, PointElement} from 'chart.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faPlusSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
+import Select from 'react-select';
+import {Chart as ChartJS,Title,Tooltip,LineElement,Legend, CategoryScale, LinearScale, PointElement} from 'chart.js';
+
+import "react-datepicker/dist/react-datepicker.css";
 ChartJS.register(
   Title,Tooltip,LineElement,Legend,CategoryScale,LinearScale,PointElement
 )
 const Store = () => {
-const [value,setValue]=useState('')
-const [time, setTime] = useState('10:00');
 
-const [theArray, setTheArray] = useState([]);
-    const addEntryClick = () => {
-        setTheArray(oldArray => [...oldArray, `Entry ${oldArray[0]}`]);
-    };
-
+  const options= [
+    { value: 'c1', label: 'Chocolate' },
+    { value: 's2', label: 'Strawberry' },
+    { value: 'v3', label: 'Vanilla' },
+  ];
 
 
-const [data,setData]=useState({
-  labels:["1","2","3","4","5","6","7","8"],
-  datasets:[
-    {
-      label:"high alert",
-      data:[140,140,140,140,140,140,140],
-      backgroundColor:'red'
-    },
-    {
-      label:"today's intake",
-      data:theArray,
-      backgroundColor:'yellow'
-    }
-  ]
-})
 
-  const handleChange=(e)=>{
-    console.log("hello world");
-    setValue("lsjdfl");
+  const [selectedOption,setSelectedOption]=useState([]);
+  const [todaysList,setTodaysList]=useState([]);
+  const [selectedTime,setSelectedTime]=useState([]);
+  const [quantity,setQuantity]=useState([]);
+
+  const addDetail=(e)=>{
+    // console.log(selectedOption)
+    // setSelectedOption(e.target.value)
+    setTodaysList([...todaysList,selectedOption]);
+    setSelectedTime(e.target.value);
+    setQuantity(e.target.value);
+    console.log(selectedOption)
   }
-    
+
   return (
-
-    
     <div className="store">
+    <div className="input-n-output">
     <div className="food-inputs">
-    {/* <div>
-      <label>Breakfast</label>
-      <input placeholder='food'></input>
-      <input placeholder='time'></input>
-      </div>
-      <div>
-      <label>Lunch</label>
-      <input placeholder='food'></input>
-      <input placeholder='time'></input>
-      </div>
-      <div>
-      <label>Dinner</label>
-      <input placeholder='food'></input>
-      <input placeholder='time'></input>
-      </div>
-      <FontAwesomeIcon icon={ faPlusSquare }
-      className="add"/> */}
+
+    <input value={selectedTime} placeholder="time"></input>
+     <Select
+     defaultValue={selectedOption}
+     onChange={setSelectedOption}
+     options={options}
+     >
+     </Select>
+     <input value={quantity} placeholder='quantity'></input>
+     <input placeholder='gi'></input>
+     <button className="add-food" onClick={addDetail}>add</button>
+
+   </div>
      
-      <select name="select food"value={theArray} onChange={handleChange}>
-        <option value="">select food</option>
-        <option value="47">Banana cake, made with sugar</option>
-        <option value="55">Banana cake, made without sugar</option>
-        <option value="46">Sponge cake, plain</option>
-      </select>
-      <select>
-        <option value="">select time</option>
-        <option value="12">12:00</option>
-        <option value="1">1:00</option>
-        <option value="2">2:00</option>
-        <option value="3">3:00</option>
-        <option value="4">4:00</option>
-        <option value="5">5:00</option>
-        <option value="6">6:00</option>
-        <option value="7">7:00</option>
-      </select>
-      {/* <TimePicker className="timepicker"onChange={setTime} value={time}/> */}
-      <button className="add-food" onClick={addEntryClick}>add</button>
-      <div>{theArray.map(entry =>
-          <div>{entry}</div>
-        )}
-        </div>
+   <div className="output" >
+    <h1>output</h1>
 
-
+   </div>
+  
     </div>
-      
-    <div className="output" >
-    <Line data={data}>hello</Line>
+    <div className="todays-list">
+   
+    <div className="food-list-head">
+      <h4>time</h4>
+      <h4>food</h4>
+      <h4>quantity</h4>
+      <h4>GI</h4>
+    </div>
 
-
+    <div className='single-list-head'>
+      {
+        todaysList.map((a)=>(
+          <div  className="single-list">
+             <h6>{a.value}</h6>
+             <h6>{a.label}</h6>
+          
+          </div>
+        ))
+      }
+    </div>
     </div>
     </div>
   )
