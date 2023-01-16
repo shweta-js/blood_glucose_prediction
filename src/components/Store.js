@@ -18,6 +18,14 @@ const Store = () => {
   ];
 
 
+  const [formInputData, setformInputData] = useState(
+    {
+    time:'',
+    food:'',
+    quantity:'',
+    gi:''
+   }
+);
 
   const [selectedOption,setSelectedOption]=useState([]);
   const [todaysList,setTodaysList]=useState([]);
@@ -25,8 +33,6 @@ const Store = () => {
   const [quantity,setQuantity]=useState([]);
 
   const addDetail=(e)=>{
-    // console.log(selectedOption)
-    // setSelectedOption(e.target.value)
     setTodaysList([...todaysList,selectedOption]);
     setSelectedTime(e.target.value);
     setQuantity(e.target.value);
