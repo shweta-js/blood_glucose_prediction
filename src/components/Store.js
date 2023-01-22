@@ -22,22 +22,24 @@ const Store = () => {
   ];
 
 
-  const [formInputData, setformInputData] = useState(
-    {
-    time:'',
-    food:'',
-    quantity:'',
-    gi:''
-   }
-);
+  
 
   const [selectedOption,setSelectedOption]=useState("");
   const [todaysList,setTodaysList]=useState([]);
-  const [readingTime,setReadingTime]=useState("");
+  const [reading_time,setreading_time]=useState("");
   const [quantity,setQuantity]=useState("");
-  const [allFoodData,setAllFoodData]=useState("");
-  const [glucose_index,setGlucose_index]=useState("");
+  const [allFoodData,setAllFoodData]=useState([]);
+  const [GI,setGI]=useState("");
 
+
+//   const [formInputData, setformInputData] = useState(
+//     {
+//     foodName:selectedOption,
+//     quantity:quantity,
+//     GI:GI,
+//     reading_time:reading_time
+//    }
+// );
 
   useEffect(()=>{
 
@@ -56,19 +58,39 @@ const Store = () => {
      .catch(err=>console.log(err))
     }
     getData();
+
   },[])
 
-
   const addDetail=(e)=>{
-    setTodaysList([...todaysList,selectedOption]);
-    setReadingTime(e.target.value);
-    setQuantity(e.target.value);
-    console.log(selectedOption)
+    setTodaysList([...todaysList,selectedOption])
+    
+    console.log(reading_time)
   }
-  const submitHandler=(e)=>{
-   console.log("handle submit")
 
-  }
+  const submitHandler=()=>{
+    
+ axios({
+        method:'post',
+        headers:{
+          'Content-type':'application/json',
+        },
+        url:"http://localhost:4000/food/addfood",
+        data:{
+          foodName:selectedOption,
+          quantity:quantity,
+          GI:GI,
+          reading_time:reading_time
+        }
+  
+      })
+      .then(res=>{
+        console.log(res);
+       
+      })
+      .catch(err=>alert(err))
+    }
+   
+  
  
   return (
     <div className="store">
@@ -76,17 +98,25 @@ const Store = () => {
     <form className="food-inputs" onSubmit={submitHandler}>
 
    
-     <Select
+     {/* <Select
      defaultValue={selectedOption}
      onChange={setSelectedOption}
      options={options}
      value={selectedOption}
-     >
-     </Select>
+     /> */}
+
+<select value={selectedOption} onChange={e=>setSelectedOption(e.target.value)} >
+  <option value="">Select food</option>
+  <option value="food1">food1</option>
+  <option value="food2">food2</option>
+  <option value="food3">food3</option>
+  </select>
+   
      <input value={quantity} placeholder='quantity' onChange={e=> setQuantity(e.target.value)}></input>
-     <input value={glucose_index} placeholder="glucose_index" onChange={e=>setGlucose_index(e.target.value)}></input>
-     <input value={readingTime} placeholder="reading time" onChange={e=>setReadingTime(e.target.value)}></input>
-     <button className="add-food" onClick={addDetail}>add</button>
+     <input value={GI} placeholder="GI" onChange={e=>setGI(e.target.value)}></input>
+     <input value={reading_time} placeholder="reading_time" onChange={e=>setreading_time(e.target.value)}></input>
+   
+     <button className="add-food" type="submit" onClick={addDetail}>add</button>
 
    </form>
      
@@ -106,17 +136,17 @@ const Store = () => {
     </div>
 
     <div className='single-list-head'>
-      {/* {
-        allFoodData.map((a)=>(
+      {
+        allFoodData.map((a,i)=>(
           <div  className="single-list">
-             <h6>{a.foodName}</h6>
-             <h6>{a.quantity}</h6>
-             <h6>{a.GI}</h6>
-             <h6>{a.reading_time}</h6>
+             <h6 >{a.foodName}</h6>
+             <h6 >{a.quantity}</h6>
+             <h6 >{a.GI}</h6>
+             <h6 >{a.reading_time}</h6>
           
           </div>
         ))
-      } */}
+      }
     </div>
     </div>
     </div>
