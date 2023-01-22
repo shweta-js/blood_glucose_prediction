@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar"
 import Show from "./components/Show"
 import Store from "./components/Store"
 
+
 function App() {
   return (
   
@@ -19,6 +20,7 @@ function App() {
       <Route  path="/" element={<Home/>} />
       <Route path="/show" element={<Show/>}/>
       <Route path="/store" element={<Store/>}/>
+
     
 
      

@@ -13,19 +13,29 @@
     length:10rem;
     margin:1rem;
     padding:1rem;
-    background-color: #3c2a4d;
+    background-color: #272643;
     border-radius: 10px;
     width:10rem;
-    border-color: black;
+    border-color: 272643;
 
 }
 .home>button:hover{
     background-color: #534064;
+    color:#fff;
 }
 .link{
     color:#e0f0ea;
     text-decoration: none;
     font-weight: bold;
-
-
+}
+.link:hover{
+    color: #fff;
+}
+.profile{
+    background-color:#272643;
+    color:#fff;
+    border-radius: 10px;
+    width: 20%;
+    margin:1rem;
+    padding:1rem;
 }
