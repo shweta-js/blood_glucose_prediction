@@ -3,7 +3,7 @@ import "./Store.css"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Select from 'react-select';
-import {Line} from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import { Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement } from 'chart.js';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +11,7 @@ import axios from 'axios';
 ChartJS.register(
   Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement
 )
+
 
 
 const Store = () => {
@@ -29,10 +30,15 @@ const Store = () => {
   const [quantity, setQuantity] = useState("");
   const [allFoodData, setAllFoodData] = useState([]);
   const [GI, setGI] = useState("");
-  const [allGI,setAllGI]=useState([]);
-
+  const [allGI, setAllGI] = useState([]);
+  const [boundry, setBoundry] = useState("");
+  const [isLoading,setLoading]=useState(false);
+  const newArr=[]
+  let big=[]
 
   useEffect(() => {
+  
+
     async function getData() {
       await axios({
         method: 'get',
@@ -40,22 +46,65 @@ const Store = () => {
       })
         .then(res => {
           var allfood = res.data.data[0];
-          // console.log(allfood);
           setAllFoodData(allfood);
-          
 
+          allfood.forEach(ele=>{
+            big.push(ele.GI);
+            
+          })
+     
+          setAllGI(big);
+        
+          for(var i=0;i<allFoodData.length;i++){
+                
+                setAllGI(allGI.concat(allFoodData[i].GI))
+              }
+      
+      
         })
         .catch(err => console.log(err))
     }
     getData();
 
-  }, [])
+
+
+
+
+
+    //--------------------------------------
+ 
+
+    // --------------getting boundry line--------
+
+    async function getBoundry() {
+      await axios({
+        method: 'get',
+        url: "http://localhost:4000/profile/getProfile/63cd05739ed95a3b4e8e287e"
+      })
+        .then(res => {
+          var profile = res.data.data[0];
+          setBoundry(profile);
+          
+        })
+        .catch(err => console.log(err))
+    }
+    getBoundry();
+
+  },[])
+
 
   const addDetail = (e) => {
     setTodaysList([...todaysList, selectedOption])
 
-    // console.log(reading_time)
   }
+
+  allFoodData.map((a,i)=>{
+    newArr.push(a.GI)
+  
+  })
+
+
+
 
   const submitHandler = () => {
 
@@ -79,25 +128,7 @@ const Store = () => {
       })
       .catch(err => alert(err))
   }
-// -----------------------------graph---------------------------
-const [data,setData]=useState({
-  labels:[1,2,3,4,5,6],
-  datasets:[
-    {
-      label:"high alert",
-      data:[140,140,140,140,140,140,140],
-      backgroundColor:'red'
-    },
-    {
-      label:"today's intake",
-      data:allGI,
-      backgroundColor:'yellow'
-    }
-  ]
-})
-{allFoodData.map((a,i)=>(
-  allGI[i]=a.GI
-))}
+
 
   return (
     <div className="store">
@@ -120,10 +151,27 @@ const [data,setData]=useState({
         </form>
 
         <div className="output" >
-    <Line data={data}>hello</Line>
+          <Line datasetIdKey="id"
+          data={{
+            labels: [1, 2, 3, 4, 5, 6],
+            datasets: [
+              {
+                id:1,
+                label: "high alert",
+                data: [140, 140, 140, 140, 140, 140, 140],
+                backgroundColor: 'red'
+              },
+              {
+                id:2,
+                label: "today's intake",
+                data:allGI,
+                backgroundColor: 'yellow'
+              }
+            ],
+          }}>hello</Line>
 
 
-    </div>
+        </div>
 
       </div>
       <div className="todays-list">
@@ -137,8 +185,8 @@ const [data,setData]=useState({
 
         <div className='single-list-head'>
           {
-            allFoodData.map((a, i) => (
-              <div className="single-list">
+            allFoodData.map((a,i) => (
+              <div className="single-list" key={i}>
                 <h6 >{a.foodName}</h6>
                 <h6 >{a.quantity}</h6>
                 <h6 >{a.GI}</h6>
@@ -147,6 +195,7 @@ const [data,setData]=useState({
               </div>
             ))
           }
+         
          
         </div>
       </div>
