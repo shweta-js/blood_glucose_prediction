@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Select from 'react-select';
 import { Line } from 'react-chartjs-2'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement } from 'chart.js';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,11 +18,11 @@ ChartJS.register(
 const Store = () => {
 
 
-  const options = [
-    { value: 'c1', label: 'Chocolate' },
-    { value: 's2', label: 'Strawberry' },
-    { value: 'v3', label: 'Vanilla' },
-  ];
+  // const options = [
+  //   { value: 'c1', label: 'Chocolate' },
+  //   { value: 's2', label: 'Strawberry' },
+  //   { value: 'v3', label: 'Vanilla' },
+  // ];
 
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -33,6 +34,7 @@ const Store = () => {
   const [allGI, setAllGI] = useState([]);
   const [boundry, setBoundry] = useState("");
   const [isLoading,setLoading]=useState(false);
+ 
   const newArr=[]
   let big=[]
 
@@ -128,7 +130,47 @@ const Store = () => {
       })
       .catch(err => alert(err))
   }
+const showFood=()=>{
+  setThisData(
+    {
+      labels: [1, 2, 3, 4, 5, 6],
+      datasets: [
+        {
+          id:1,
+          label: "high alert",
+          data: [140, 140, 140, 140, 140, 140, 140],
+          backgroundColor: 'red'
+        },
+        {
+          id:2,
+          label: "today's intake",
+          data:allGI,
+          backgroundColor: 'yellow',
+          displays:allGI
+        }
+      ],
+    }
+  )
 
+  
+ 
+}
+const options = {
+  plugins: {
+    datalabels: {
+      display: true,
+      color: "black",
+      formatter: Math.round,
+      anchor: "end",
+      offset: -20,
+      align: "start"
+    }
+  },
+  legend: {
+    display: false
+  }
+};
+const [thisData,setThisData]=useState({});
 
   return (
     <div className="store">
@@ -152,7 +194,7 @@ const Store = () => {
 
         <div className="output" >
           <Line datasetIdKey="id"
-          data={{
+          data={ {
             labels: [1, 2, 3, 4, 5, 6],
             datasets: [
               {
@@ -165,12 +207,12 @@ const Store = () => {
                 id:2,
                 label: "today's intake",
                 data:allGI,
-                backgroundColor: 'yellow'
+                backgroundColor: 'yellow',
+                dataLabels:{display:true}
               }
             ],
-          }}>hello</Line>
-
-
+          }} plugins={[ChartDataLabels]} options={options}>hello</Line>
+      
         </div>
 
       </div>
