@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .home{
     display:flex;
     flex-direction:column;
@@ -13,14 +14,14 @@
     length:10rem;
     margin:1rem;
     padding:1rem;
-    background-color: #272643;
+    background-color: green;
     border-radius: 10px;
     width:10rem;
     border-color: 272643;
 
 }
 .home>button:hover{
-    background-color: #534064;
+    background-color: grey;
     color:#fff;
 }
 .link{
@@ -32,7 +33,7 @@
     color: #fff;
 }
 .profile{
-    background-color:#272643;
+    background-color:green;
     color:#fff;
     border-radius: 10px;
     width: 20%;
@@ -56,7 +57,7 @@
   }
 
 .profile input[type="text"] {
-    width: 50px;
+    width: 100px;
     height: 20px;
     margin-left: 10px;
   }
@@ -66,11 +67,49 @@ label {
     width: 100px;
     text-align: right;
     margin-right: 10px;
+    font-size:20px;
   }
 
-input {
-    width: 150px;
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
+  
+  .fade-in-out {
+    animation: fadeInOut 3s ease-in-out infinite;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: black;
+  }
+  
+
+  body {
+    background-image: url(https://img.freepik.com/free-photo/supermarket-banner-concept-with-ingredients_23-2149421182.jpg?w=2000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+
+  
+  
+  
+  
+
+
+  
+  
+
+
   
 
 

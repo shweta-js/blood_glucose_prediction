@@ -35,8 +35,15 @@ const Home = () => {
   }
 
   return (
+    
     <div className="home">
+   <div className="fade-in-out">
+      WELCOME PLEASE PROVIDE THE FOLLOWING INFORMATION TO BEGIN
+   </div>
+
+
       <div className="profile">
+
         <label>Name</label>
         <input type="text" className="name-text-box" value={name} onChange={e => setName(e.target.value)} />
         <br />
