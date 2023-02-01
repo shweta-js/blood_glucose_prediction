@@ -39,3 +39,42 @@
     margin:1rem;
     padding:1rem;
 }
+
+.name-text-box {
+    width: 250px;
+    height: 30px;
+  }
+  
+.age-text-box {
+    width: 150px;
+    height: 30px;
+  }
+  
+.gender-text-box {
+    width: 150px;
+    height: 30px;
+  }
+
+.profile input[type="text"] {
+    width: 50px;
+    height: 20px;
+    margin-left: 10px;
+  }
+  
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+input {
+    width: 150px;
+  }
+  
+
+
+  
+  
+  
+  

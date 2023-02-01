@@ -5,28 +5,43 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Show = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [food, setFood] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [glucoseIndex, setGlucoseIndex] = useState('');
+  const [timings, setTimings] = useState('');
+
   return (
     <div className="show">
-        {/* <DatePicker 
-        selected={startDate} 
-        onChange={(date:Date) => setStartDate(date)} />
-         */}
+         <p className="choose-date-text">Choose date: </p>
          <DatePicker 
          selected={startDate}
          className="calender"
          onChange={(date) => setStartDate(date)} />
+         <p className="show-date"></p>
+         <div className="input-fields">
+            <label>Food:</label>
+            <input type="text" value={food} onChange={(e) => setFood(e.target.value)} />
 
-         <div className="show-data">
-          <button className='edit'>edit</button>
-              <h4>food</h4>
-              <p>Banana cake</p>
-              <h4>time</h4>
-              <p>12</p>
-              <h4>glucose level</h4>
-              <p>14.2</p>
+            <label>Quantity:</label>
+            <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+
+            <label>Glucose Index:</label>
+            <input type="text" value={glucoseIndex} onChange={(e) => setGlucoseIndex(e.target.value)} />
+
+            <label>Timings:</label>
+            <input type="text" value={timings} onChange={(e) => setTimings(e.target.value)} />
+         </div>
+         <div className="edit-cancel-btns">
+            <button className='edit'>edit</button>
+            <button className='cancel'>cancel</button>
+         </div>
+         <button className="save-button">Save</button>
+         <div className="footer">
+         <p>Know your glucose levels</p>
          </div>
 
     </div>
+    
   )
 }
 
