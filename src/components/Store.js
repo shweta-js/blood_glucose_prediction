@@ -31,12 +31,17 @@ const Store = () => {
   const [quantity, setQuantity] = useState("");
   const [allFoodData, setAllFoodData] = useState([]);
   const [GI, setGI] = useState("");
-  const [allGI, setAllGI] = useState([]);
+  const [allGI, setAllGI] = useState({allGI:[],foodValues:[]});
   const [boundry, setBoundry] = useState("");
   const [isLoading,setLoading]=useState(false);
+  const [toggle,setToggle]=useState()
+  const[diabetic,setDiabetic]=useState(true);
+  const [time,setTime]=useState();
  
   const newArr=[]
   let big=[]
+  let food=[]
+  let read_time=[]
 
   useEffect(() => {
   
@@ -44,7 +49,7 @@ const Store = () => {
     async function getData() {
       await axios({
         method: 'get',
-        url: "http://localhost:4000/food/allfood"
+        url: "http://localhost:4000/food/today"
       })
         .then(res => {
           var allfood = res.data.data[0];
@@ -52,11 +57,15 @@ const Store = () => {
 
           allfood.forEach(ele=>{
             big.push(ele.GI);
+            food.push(ele.foodName);
+            read_time.push(ele.reading_time)
             
           })
      
           setAllGI(big);
-        
+          setTime(read_time);
+          console.log(time)
+     
           for(var i=0;i<allFoodData.length;i++){
                 
                 setAllGI(allGI.concat(allFoodData[i].GI))
@@ -74,7 +83,24 @@ const Store = () => {
 
 
     //--------------------------------------
- 
+    const url="http://Localhost:4000/profile/getProfile/shweta"
+
+  async function getDiabetic(){
+    axios({
+      method:"get",
+      url:url
+    }).then(res=>{
+    
+      setDiabetic(res.data.data[0].user[0].diabetic)
+      // console.log(res.data.data[0].user[0].diabetic)
+      // setDiabetic(profile.diabetic)
+      // diabetic ? console.log(diabetic):console.log(diabetic)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
+
 
     // --------------getting boundry line--------
 
@@ -91,6 +117,7 @@ const Store = () => {
         .catch(err => console.log(err))
     }
     getBoundry();
+    getDiabetic();
 
   },[])
 
@@ -104,9 +131,18 @@ const Store = () => {
     newArr.push(a.GI)
   
   })
+  // ------------get field---------------------
 
+  function getFields(input, field) {
+    var output = [];
+    for (var i=0; i < input.length ; ++i)
+        output.push(input[i][field]);
+    return output;
+}
 
-
+var result = getFields(allFoodData, "foodName");
+// console.log(result) 
+//-----------------get field end---------------------------------
 
   const submitHandler = () => {
 
@@ -130,35 +166,11 @@ const Store = () => {
       })
       .catch(err => alert(err))
   }
-const showFood=()=>{
-  setThisData(
-    {
-      labels: [1, 2, 3, 4, 5, 6],
-      datasets: [
-        {
-          id:1,
-          label: "high alert",
-          data: [140, 140, 140, 140, 140, 140, 140],
-          backgroundColor: 'red'
-        },
-        {
-          id:2,
-          label: "today's intake",
-          data:allGI,
-          backgroundColor: 'yellow',
-          displays:allGI
-        }
-      ],
-    }
-  )
 
-  
- 
-}
 const options = {
   plugins: {
     datalabels: {
-      display: true,
+      display: false,
       color: "black",
       formatter: Math.round,
       anchor: "end",
@@ -170,19 +182,25 @@ const options = {
     display: false
   }
 };
-const [thisData,setThisData]=useState({});
+const showFoodValues=()=>{
+  console.log("hello")
+ 
+}
+
 
   return (
     <div className="store">
       <div className="input-n-output">
         <form className="food-inputs" onSubmit={submitHandler}>
 
-          <select value={selectedOption} onChange={e => setSelectedOption(e.target.value)} >
+          {/* <select value={selectedOption} onChange={e => setSelectedOption(e.target.value)} >
             <option value="">Select food</option>
             <option value="food1">food1</option>
             <option value="food2">food2</option>
             <option value="food3">food3</option>
-          </select>
+          </select> */}
+
+<input value={selectedOption} placeholder="food" onChange={e => setSelectedOption(e.target.value)} ></input>
 
           <input value={quantity} placeholder='quantity' onChange={e => setQuantity(e.target.value)}></input>
           <input value={GI} placeholder="GI" onChange={e => setGI(e.target.value)}></input>
@@ -195,12 +213,12 @@ const [thisData,setThisData]=useState({});
         <div className="output" >
           <Line datasetIdKey="id"
           data={ {
-            labels: [1, 2, 3, 4, 5, 6],
-            datasets: [
+            labels:time,
+                datasets: [
               {
                 id:1,
                 label: "high alert",
-                data: [140, 140, 140, 140, 140, 140, 140],
+                data: diabetic?[200,200,200,200,200,200,200,200,200,200,200,200,200,200,200]:[140, 140, 140, 140, 140, 140, 140,140,140,140,140,140,140,140,140],
                 backgroundColor: 'red'
               },
               {
@@ -214,8 +232,11 @@ const [thisData,setThisData]=useState({});
           }} plugins={[ChartDataLabels]} options={options}>hello</Line>
       
         </div>
-
+          {/* <button onClick={showFoodValues}>food</button> */}
       </div>
+      {
+        allGI[allGI.length - 1]>=200?<div className="fade-in-out">high glucose</div>:" "
+      }
       <div className="todays-list">
 
         <div className="food-list-head">

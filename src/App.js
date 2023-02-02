@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import Show from "./components/Show"
 import Store from "./components/Store"
+import Profile from "./components/Profile"
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <Route  path="/" element={<Home/>} />
       <Route path="/show" element={<Show/>}/>
       <Route path="/store" element={<Store/>}/>
-
+      <Route path="/profile" element={<Profile/>}/>
     
 
      

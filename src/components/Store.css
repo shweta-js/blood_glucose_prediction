@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
 .store{
     display: flex;
     flex-direction: column;
@@ -18,14 +21,16 @@
     
 }
 .food-inputs{
+   
     margin:3rem;
     left:0;
-    background-color: pink;
+    background-color:#95adbe;
     padding:1rem;
     justify-content: space-around;
     display: flex;
     flex-direction: column;
     height: 20rem;
+    border-radius: 10px;
 }
 .food-inputs>input{
     background-color: #fff;
@@ -51,15 +56,19 @@
     background-color:#533e66;
 }
 .output{
-    background-color: pink;
+  
+    background-color:#95adbe;
+    padding:1rem;
+    border-radius: 10px;
     width: 50%;
+    height:50%;
 
 }
 .todays-list{
     display: flex;
     flex-direction: column;
     width: 90%;
-    background-color: aqua;
+    /* background-color: aqua; */
     padding:1rem;
 }
 .food-list-head{
@@ -73,7 +82,7 @@
    
 }
 .single-list-head{
-    background-color:aquamarine;
+    /* background-color:aquamarine; */
 
 }
 .single-list{
@@ -87,3 +96,22 @@
     padding:1rem;
     
 }
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+.fade-in-out{
+    animation: fadeInOut 3s ease-in-out infinite;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: red;
+  }

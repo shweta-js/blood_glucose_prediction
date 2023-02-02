@@ -5,8 +5,7 @@
     justify-content: center;
     align-items: center;
     margin-top:10rem;
-    /* background-color: red;
-   */
+  
 }
 .home>button{
     width:5rem;
@@ -39,3 +38,231 @@
     margin:1rem;
     padding:1rem;
 }
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.home{
+    display:flex;
+    flex-direction:column;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:10rem;
+   
+.home>button{
+    width:5rem;
+    length:10rem;
+    margin:1rem;
+    padding:1rem;
+    background-color: green;
+    border-radius: 10px;
+    width:10rem;
+    border-color: 272643;
+
+}
+.home>button:hover{
+    background-color: grey;
+    color:#fff;
+}
+.link{
+    color:#e0f0ea;
+    text-decoration: none;
+    font-weight: bold;
+}
+.link:hover{
+    color: #fff;
+}
+.profile{
+    background-color:green;
+    color:#fff;
+    border-radius: 10px;
+    width: 20%;
+    margin:1rem;
+    padding:1rem;
+}
+
+.name-text-box {
+    width: 250px;
+    height: 30px;
+  }
+  
+.age-text-box {
+    width: 150px;
+    height: 30px;
+  }
+  
+.gender-text-box {
+    width: 150px;
+    height: 30px;
+  }
+
+.profile input[type="text"] {
+    width: 100px;
+    height: 20px;
+    margin-left: 10px;
+  }
+  
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    font-size:20px;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .fade-in-out {
+    animation: fadeInOut 3s ease-in-out infinite;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: black;
+  }
+  */
+
+ .home {
+    background-image: url(https://img.freepik.com/free-photo/supermarket-banner-concept-with-ingredients_23-2149421182.jpg?w=2000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin-top:0;
+} 
+
+name-text-box {
+  width: 250px;
+  height: 30px;
+}
+
+.age-text-box {
+  width: 150px;
+  height: 30px;
+}
+
+.gender-text-box {
+  width: 150px;
+  height: 30px;
+}
+
+.profile input[type="text"] {
+  width: 100px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+  font-size:20px;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-in-out {
+  animation: fadeInOut 3s ease-in-out infinite;
+  font-size: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+
+/* body {
+  background-image: url(https://img.freepik.com/free-photo/supermarket-banner-concept-with-ingredients_23-2149421182.jpg?w=2000);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+} */
+
+.additional-info {
+font-family: 'Open Sans', sans-serif;
+font-size: 18px;
+line-height: 1.5;
+color: #333;
+text-align: left;
+padding: 20px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+background-color: #f7f7f7;
+margin: 20px 0;
+display: inline-block;
+}
+
+footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px;
+background-color: #333;
+color: #fff;
+}
+
+.footer-logos {
+display: flex;
+}
+
+.footer-logos a {
+margin-right: 20px;
+}
+
+.footer-logos img {
+width: 40px;
+height: 40px;
+
+}
+.footer-logos img {
+width: 40px;
+height: 40px;
+
+}
+
+.footer-copyright {
+font-size: 14px;
+margin: 0;
+}
+
+body {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+}
+
+main {
+flex: 1;
+}
+
+footer {
+bottom: 0;
+position: absolute;
+width: 100%;
+text-align: center;
+}
+
+
+
+
+
+

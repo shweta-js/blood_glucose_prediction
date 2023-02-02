@@ -1,6 +1,7 @@
 .show{
     display: flex;
     flex-direction:column;
+    align-items: center;
 
 
 }
@@ -47,4 +48,17 @@ p{
     padding:1rem;
     border-radius: 10px;
   
+}
+.get-data{
+    width:8rem;
+    align-items:center;
+    margin:1rem;
+    padding:1rem;
+    border-radius:1rem;
+    color:#fff;
+    background-color: #3c2a4d;
+
+}
+.single-list-head{
+    background-color:#95adbe;
 }

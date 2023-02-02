@@ -8,3 +8,11 @@
 .heading{
 color:#e0f0ea;
 }
+.nav-options{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+.nav-options>Link:hover{
+    color:#646399 ;
+}

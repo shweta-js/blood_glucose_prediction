@@ -1,0 +1,29 @@
+.profile-details{
+    background-color: #3c2a4d;
+    padding:2rem;
+    width: 40%;
+    align-items: center;
+    margin-left:30%;
+    justify-content: center;
+    border-radius:10px;
+}
+.pro-det{
+    background-color: #3c2a4d;
+    display:flex;
+    flex-direction: row;
+}
+.pro-p{
+    background-color: #3c2a4d;
+    color:#fff;
+    border-radius: 50%;
+}
+.pro-edit{
+    float: right;
+    margin:1rem;
+    border-color:#fff;
+    border-radius: 10px;
+
+}
+.pro-det-edit{
+    justify-content: end;
+}
