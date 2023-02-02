@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 const FoodSchema = mongoose.Schema({
   foodName: {
     type: String,
-    required: true,
+    // required: true,
   },
   quantity: {
     type: Number,
-    required: true,
+    // required: true,
   },
   GI:{
     type:Number,
-    required:true,
+    // required:true,
   },
   reading_time:{
-        type: String,
-        required: true,
+        type: Number,
+        // required: true,
     }
 },{ timestamps: true });
 

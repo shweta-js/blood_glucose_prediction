@@ -13,6 +13,11 @@ const profileSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+  diabetic:{
+    type:Boolean,
+    required:true,
+    default:false
+  }
 },{ timestamps: true });
 
 

@@ -9,10 +9,10 @@ const {
 } = require("../controllers/ProfileController");
 const router = express.Router();
 
-router.get("/temp", temp);
+// router.get("/temp", temp);
 router.post("/createProfile",createProfile);
 router.delete("/deleteProfile/:id",deleteProfile);
 router.put("/updateProfile/:id",updateProfile);
-router.get("/getProfile/:profileId",getProfile)
+router.get("/getProfile/:name",getProfile)
 
 module.exports = router;

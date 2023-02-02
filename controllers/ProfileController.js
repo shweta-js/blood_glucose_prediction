@@ -1,4 +1,6 @@
 // require("../config/db.js");
+var {mongoose} = require('mongoose');
+var ObjectId = require('mongoose').Types.ObjectId; 
 const Profile = require('../models/ProfileModel');
 
 const temp = async (req, res) => {
@@ -11,13 +13,15 @@ const createProfile = async(req,res)=>{
     var name=req.body.name;
     var age=req.body.age;
     var gender=req.body.gender;
+    var diabetic=req.body.diabetic;
 
     try{
         
         var addProfile=new Profile({
             name,
             age,
-            gender
+            gender,
+            diabetic
         })
         console.log(addProfile)
         var insertProfile = await addProfile.save();
@@ -29,20 +33,21 @@ const createProfile = async(req,res)=>{
       }
 }
 const getProfile = async(req,res)=>{
+    
     try{
-        const {profileId}=req.params;
-
-        const myProfile = await Profile.find({profileId});
-        if(myProfile){
-            res.status(200).json({messange:"profile found",data:[{myProfile}]})
-        }else{
-            throw new Error("error!")
-        }
-    }catch(error){
-        console.log(error);
-        res.status(400).json({message:"got error",data:[]})
+        const {name}=req.params;
+        console.log(name)
+    
+      const user=  Profile.find({name:name}).then((user) =>
+        res.status(200).json({message:"profile fetched successfully",data:[{user}]})
+        );
+    }catch(err){
+        console.log(err);
+        return res.send('could not get');
+        
     }
-};
+      };
+
 
 const deleteProfile = async(req,res)=>{
     try{
@@ -74,6 +79,7 @@ const updateProfile = async(req,res)=>{
   )
 
 }
+
 module.exports={
     temp,
     createProfile,

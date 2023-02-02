@@ -1,5 +1,9 @@
 // require("../config/db.js");
 const Food = require('../models/FoodModel');
+// import endOfDay from 'date-fns/endOfDay'
+// import startOfDay from 'date-fns/startDay'
+var ObjectId = require('mongodb').ObjectID;
+
 
 const temp = async (req, res) => {
  
@@ -67,8 +71,8 @@ const getAllFood = async(req,res)=>{
     Food.find({},async(err,foods)=>{
         if(err){
             res.status(400).json({
-                message:"No Coupons found",
-                data:[offers]
+                message:"No details found",
+                data:[]
             })
         }
         else{
@@ -80,12 +84,68 @@ const getAllFood = async(req,res)=>{
     }).sort("-createdAt")
     
 }
+
+const todayIntake = async(req,res)=>{
+    var startOfToday = new Date();
+    startOfToday.setHours(0,0,0,0);
+    // creates ObjectId() from date:
+    var _id = Math.floor(startOfToday.getTime() / 1000).toString(16) + "0000000000000000";
+    
+
+    Food.find({ _id: { $gte: ObjectId(_id) } },async(err,foods)=>{
+        if(err){
+            res.status(400).json({
+                message:"No details found",
+                data:[]
+            })
+        }
+        else{
+            res.status(200).json({
+                message:"all food",
+                data:[foods]
+            })
+        }
+    })
+    
+}
+const dataForDate= async(req,res)=>{
+//    Food.find=async(req,res)=>{
+//    createdAt:{
+//     $gte:startOfDay(new Date()),
+//     $lte:endOfDay(new Date())
+//    }
+//    }
+}
+const betweenDate=async(req,res)=>{
+    var {fromdate}=req.params;
+    var {todate}= req.params;
+    console.log(fromdate,todate);
+ 
+
+    Food.find({createdAt:{$gte:new Date(fromdate),$lt:new Date(todate)}},async(err,foods)=>{
+        if(err){
+            res.status(400).json({
+                message:"No details found",
+                data:[]
+            })
+        }
+        else{
+            res.status(200).json({
+                message:"all food",
+                data:[foods]
+            })
+        }
+    }).sort("-createdAt")
+}
 module.exports={
     temp,
     addFood,
     deleteFood,
     updateFood,
-    getAllFood
+    getAllFood,
+    dataForDate,
+    todayIntake,
+    betweenDate,
 
     
 
