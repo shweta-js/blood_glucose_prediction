@@ -62,3 +62,56 @@ p{
 .single-list-head{
     background-color:#95adbe;
 }
+.input-output-show{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+
+}
+.output-show{
+  
+    background-color:#95adbe;
+    padding:1rem;
+    border-radius: 10px;
+    width: 40rem;
+    height:20rem;
+}
+
+.food-inputs-show{
+   
+    margin:3rem;
+    left:0;
+    background-color:#95adbe;
+    padding:1rem;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    width: 18rem;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+.food-inputs-show>input{
+    background-color: #fff;
+    
+    padding:1rem;
+    border-radius: 5px;
+    height:2.3rem;
+    width: 15rem;
+  
+}
+.input-n-output-show{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+   
+    /* background-color: rgb(136, 124, 124); */
+    width:90%;
+    padding:1rem;
+
+    
+}

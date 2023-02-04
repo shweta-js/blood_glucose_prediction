@@ -11,9 +11,11 @@
 
 }
 .input-n-output{
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+   
     /* background-color: rgb(136, 124, 124); */
     width:90%;
     padding:1rem;
@@ -29,8 +31,11 @@
     justify-content: space-around;
     display: flex;
     flex-direction: column;
-    height: 20rem;
+    height: 23rem;
+    width: 18rem;
+    align-items: center;
     border-radius: 10px;
+
 }
 .food-inputs>input{
     background-color: #fff;
@@ -38,7 +43,7 @@
     padding:1rem;
     border-radius: 5px;
     height:2.3rem;
-    width: 12rem;
+    width: 15rem;
   
 }
 

@@ -17,14 +17,6 @@ ChartJS.register(
 
 const Store = () => {
 
-
-  // const options = [
-  //   { value: 'c1', label: 'Chocolate' },
-  //   { value: 's2', label: 'Strawberry' },
-  //   { value: 'v3', label: 'Vanilla' },
-  // ];
-
-
   const [selectedOption, setSelectedOption] = useState("");
   const [todaysList, setTodaysList] = useState([]);
   const [reading_time, setreading_time] = useState("");
@@ -64,7 +56,7 @@ const Store = () => {
      
           setAllGI(big);
           setTime(read_time);
-          console.log(time)
+          // console.log(time)
      
           for(var i=0;i<allFoodData.length;i++){
                 
@@ -141,8 +133,6 @@ const Store = () => {
 }
 
 var result = getFields(allFoodData, "foodName");
-// console.log(result) 
-//-----------------get field end---------------------------------
 
   const submitHandler = () => {
 
@@ -170,7 +160,7 @@ var result = getFields(allFoodData, "foodName");
 const options = {
   plugins: {
     datalabels: {
-      display: false,
+      display: true,
       color: "black",
       formatter: Math.round,
       anchor: "end",
@@ -258,7 +248,6 @@ const showFoodValues=()=>{
               </div>
             ))
           }
-         
          
         </div>
       </div>
