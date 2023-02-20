@@ -20,11 +20,13 @@ ChartJS.register(
 const Show = () => {
 
 
-  // const options = [
-  //   { value: 'c1', label: 'Chocolate' },
-  //   { value: 's2', label: 'Strawberry' },
-  //   { value: 'v3', label: 'Vanilla' },
-  // ];
+
+
+
+
+
+
+
 
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -45,6 +47,9 @@ const Show = () => {
   let big=[]
   let food=[]
   let read_time=[]
+
+  const [objValue, setObjValue] = useState('');
+
 
   useEffect(() => {
 
@@ -135,7 +140,7 @@ var result = getFields(allFoodData, "foodName");
     
         setAllGI(big);
         setTime(read_time);
-        console.log(time)
+        console.log(allfood)
     
         for(var i=0;i<allFoodData.length;i++){
               
@@ -147,25 +152,38 @@ var result = getFields(allFoodData, "foodName");
         e.preventDefault();
   }
 
-const options = {
-  plugins: {
-    datalabels: {
-      display: false,
-      color: "black",
-      formatter: Math.round,
-      anchor: "end",
-      offset: -20,
-      align: "start"
+
+const dataObject=allFoodData.map(({ reading_time: x, GI: y, foodName: label }) => ({ x, y, obj: { value: label } }));
+
+
+  const data = {
+    datasets: [
+      {
+        label: 'My Dataset',
+        data: Object.entries(dataObject).map(([x, { y, obj }]) => ({ x, y, obj })),
+        fill: false,
+        borderColor: 'rgba(75,192,192,1)',
+        tension: 0.1
+      }
+    ]
+  };
+
+  const options = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            const index = context.dataIndex;
+            const obj = data.datasets[0].data[index].obj;
+            setObjValue(obj.value);
+            return obj.value;
+          }
+        }
+      }
     }
-  },
-  legend: {
-    display: false
-  }
-};
-const showFoodValues=()=>{
-  console.log("hello")
- 
-}
+  };
+
+
 
 
   return (
@@ -173,12 +191,6 @@ const showFoodValues=()=>{
       <div className="input-output-show">
         <form className="food-inputs-show" onSubmit={submitHandler}>
 
-          {/* <select value={selectedOption} onChange={e => setSelectedOption(e.target.value)} >
-            <option value="">Select food</option>
-            <option value="food1">food1</option>
-            <option value="food2">food2</option>
-            <option value="food3">food3</option>
-          </select> */}
 
         <input placeholder="from" className="calender" value={startDate} onChange={(e)=>setStartDate(e.target.value)}></input>
          <input placeholder="to" className="calender" value={endDate} onChange={(e)=>setEndDate(e.target.value)}></input>
@@ -187,28 +199,11 @@ const showFoodValues=()=>{
         </form>
 
         <div className="output-show" >
-          <Line datasetIdKey="id"
-          data={ {
-            labels:time,
-                datasets: [
-              {
-                id:1,
-                label: "high alert",
-                data: diabetic?[200,200,200,200,200,200,200,200,200,200,200,200,200,200,200]:[140, 140, 140, 140, 140, 140, 140,140,140,140,140,140,140,140,140],
-                backgroundColor: 'red'
-              },
-              {
-                id:2,
-                label: "today's intake",
-                data:allGI,
-                backgroundColor: 'yellow',
-                dataLabels:{display:true}
-              }
-            ],
-          }} plugins={[ChartDataLabels]} options={options}>hello</Line>
       
+<Line data={data} options={options} />
+
         </div>
-          {/* <button onClick={showFoodValues}>food</button> */}
+          
       </div>
       {
         allGI[allGI.length - 1]>=200?<div className="fade-in-out">high glucose</div>:" "
@@ -222,10 +217,10 @@ const showFoodValues=()=>{
           <h4>reading_time</h4>
         </div>
 
-        <div className='single-list-head'>
+        <div className='single-list-head' >
           {
           allFoodData?  allFoodData.map((a,i) => (
-            <div className="single-list" key={i}>
+            <div className="single-list" key={i} onClick={(e)=>console.log(a)}>
               <h6 >{a.foodName}</h6>
               <h6 >{a.quantity}</h6>
               <h6 >{a.GI}</h6>

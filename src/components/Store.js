@@ -53,11 +53,11 @@ const Store = () => {
             read_time.push(ele.reading_time)
             
           })
-     
+    //  console.log(allGI)
           setAllGI(big);
           setTime(read_time);
           // console.log(time)
-     
+          console.log(allfood)
           for(var i=0;i<allFoodData.length;i++){
                 
                 setAllGI(allGI.concat(allFoodData[i].GI))
@@ -160,7 +160,7 @@ var result = getFields(allFoodData, "foodName");
 const options = {
   plugins: {
     datalabels: {
-      display: true,
+      display: false,
       color: "black",
       formatter: Math.round,
       anchor: "end",
@@ -220,7 +220,7 @@ const showFoodValues=()=>{
               }
             ],
           }} plugins={[ChartDataLabels]} options={options}>hello</Line>
-      
+      {/* {console.log(big)} */}
         </div>
           {/* <button onClick={showFoodValues}>food</button> */}
       </div>
@@ -239,7 +239,7 @@ const showFoodValues=()=>{
         <div className='single-list-head'>
           {
             allFoodData.map((a,i) => (
-              <div className="single-list" key={i}>
+              <div className="single-list" key={i} >
                 <h6 >{a.foodName}</h6>
                 <h6 >{a.quantity}</h6>
                 <h6 >{a.GI}</h6>

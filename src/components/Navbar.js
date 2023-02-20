@@ -9,9 +9,9 @@ const Navbar = () => {
     <div className="navbar">
     <h1 className="heading">Glucose Tracker</h1>
     <div className="nav-options">
-    <Link className="link" to="/profile">profile</Link>
-    <Link className="link" to="/store">store</Link>
-    <Link className="link" to="/show">show</Link>
+    <Link className="link" to="/profile"><h4>profile</h4></Link>
+    <Link className="link" to="/store"><h4>store</h4></Link>
+    <Link className="link" to="/show"><h4>show</h4></Link>
    </div>
       </div>
   )
