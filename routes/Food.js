@@ -9,6 +9,7 @@ const {
   dataForDate,
   todayIntake,
   betweenDate,
+  getFoodId
 } = require("../controllers/FoodController");
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.put("/:id",updateFood);
 router.get("/today", todayIntake);
 router.get("/getData/:date",dataForDate);
 router.get("/between/:fromdate/:todate",betweenDate)
+router.get("/:id",getFoodId);
 
 
 module.exports = router;

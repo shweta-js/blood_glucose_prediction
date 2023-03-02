@@ -14,7 +14,7 @@ const FoodSchema = mongoose.Schema({
     // required:true,
   },
   reading_time:{
-        type: Number,
+        type: String,
         // required: true,
     }
 },{ timestamps: true });

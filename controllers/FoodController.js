@@ -37,9 +37,11 @@ const addFood = async(req,res)=>{
 }
 
 const deleteFood = async(req,res)=>{
+    const {id}=req.params;
+
     try{
-        const {id}=req.params;
-        Profile.findByIdAndDelete(id).then((deletedFood) =>
+   
+        Food.findByIdAndDelete(id).then((deletedFood) =>
         res.status(200).json({message:"food deleted successfully",data:[{deletedFood}]})
         );
     }catch(err){
@@ -137,6 +139,31 @@ const betweenDate=async(req,res)=>{
         }
     }).sort("-createdAt")
 }
+const getFoodId = async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    const requestedFood = await Food.findById(id);
+    if (requestedFood) {
+      console.log(requestedFood)
+      res.status(200).json({
+        message: "Food found with matching id",
+        data: [{ requestedFood }]
+      });
+  
+    }
+    else {
+      res.status(404).json({ message: "NOT FOUND", data: [] });
+    }
+  };
+  
+  const deleteJobById = async (req, res) => {
+    const { jobId } = req.params;
+  
+    Job.findByIdAndDelete(jobId).then((deletedJob) =>
+      res.status(200).json({ message: "Job Deleted Successfully", data: [{ deletedJob }] })
+    );
+  };
+  
 module.exports={
     temp,
     addFood,
@@ -146,6 +173,7 @@ module.exports={
     dataForDate,
     todayIntake,
     betweenDate,
+    getFoodId
 
     
 

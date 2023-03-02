@@ -14,9 +14,8 @@ const profileSchema = mongoose.Schema({
         required: true,
     },
   diabetic:{
-    type:Boolean,
+    type:String,
     required:true,
-    default:false
   }
 },{ timestamps: true });
 

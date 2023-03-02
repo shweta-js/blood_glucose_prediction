@@ -36,7 +36,7 @@ const getProfile = async(req,res)=>{
     
     try{
         const {name}=req.params;
-        console.log(name)
+        // console.log(name)
     
       const user=  Profile.find({name:name}).then((user) =>
         res.status(200).json({message:"profile fetched successfully",data:[{user}]})
@@ -47,6 +47,24 @@ const getProfile = async(req,res)=>{
         
     }
       };
+
+const updateProfile = async(req,res)=>{
+  const {name}=req.params;
+ 
+  const updateProfile= req.body;
+  Profile.findOneAndUpdate(
+    name,
+    updateProfile,
+    {new:true},
+    (error,updatedProfile)=>{
+        if (error) console.log(error);
+
+        res.status(200).json({
+            message:"Profile updated successfull",data:[{updatedProfile}]
+        })
+    }
+  )
+}
 
 
 const deleteProfile = async(req,res)=>{
@@ -60,24 +78,6 @@ const deleteProfile = async(req,res)=>{
     }
   
     
-}
-
-const updateProfile = async(req,res)=>{
-  const {id}=req.params;
-  const updateProfile= req.body;
-  Profile.findByIdAndUpdate(
-    id,
-    updateProfile,
-    {new:true},
-    (error,updatedProfile)=>{
-        if (error) console.log(error);
-
-        res.status(200).json({
-            message:"profile updated successfull",data:[{updatedProfile}]
-        })
-    }
-  )
-
 }
 
 module.exports={
