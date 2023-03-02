@@ -7,8 +7,9 @@ import Navbar from "./components/Navbar"
 import Show from "./components/Show"
 import Store from "./components/Store"
 import Profile from "./components/Profile"
-
-
+import Footer from "./components/Footer"
+// import SingleValue from 'react-select/dist/declarations/src/components/SingleValue';
+import SingleData from "./components/SingleData"
 function App() {
   return (
   
@@ -22,11 +23,12 @@ function App() {
       <Route path="/show" element={<Show/>}/>
       <Route path="/store" element={<Store/>}/>
       <Route path="/profile" element={<Profile/>}/>
+      <Route path="/food/:id" element={<SingleData/>}/>
     
 
      
      </Routes>
- 
+
      </Router>
       
  

@@ -1,0 +1,16 @@
+import React from 'react'
+import './Footer.css';
+const Footer = () => {
+  return (
+    <div className='footer'>
+          <div className="social-links">
+        <a href="https://www.facebook.com"><i className="fab fa-facebook"></i></a>
+        <a href="https://www.twitter.com"><i className="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a>
+      </div>
+      <div className="copywrite">© 2023 All rights reserved.</div>
+    </div>
+  )
+}
+
+export default Footer

@@ -1,0 +1,28 @@
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+    align-items: bottom;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-top: auto;
+
+  }
+  
+  .social-links a {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 24px;
+    text-decoration: none;
+  }
+  
+  .copywrite {
+    font-size: 14px;
+    text-align: right;
+  }
+  

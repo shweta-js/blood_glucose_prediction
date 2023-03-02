@@ -6,9 +6,15 @@ import Select from 'react-select';
 import { Line } from 'react-chartjs-2'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement } from 'chart.js';
-
+import { Link,useNavigate} from 'react-router-dom'
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+
+import Datetime from 'react-datetime';
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime/css/react-datetime.css';
+
+
 ChartJS.register(
   Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement
 )
@@ -27,14 +33,19 @@ const Store = () => {
   const [boundry, setBoundry] = useState("");
   const [isLoading,setLoading]=useState(false);
   const [toggle,setToggle]=useState()
-  const[diabetic,setDiabetic]=useState(true);
+  const[diabetic,setDiabetic]=useState("");
   const [time,setTime]=useState();
+  const [timeActive,setTimeActive]=useState(false);
+  const [toggleFood,setToggleFood]=useState(false);
  
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const newArr=[]
   let big=[]
   let food=[]
   let read_time=[]
-
+ 
   useEffect(() => {
   
 
@@ -50,8 +61,9 @@ const Store = () => {
           allfood.forEach(ele=>{
             big.push(ele.GI);
             food.push(ele.foodName);
+
             read_time.push(ele.reading_time)
-            
+           
           })
     //  console.log(allGI)
           setAllGI(big);
@@ -84,9 +96,7 @@ const Store = () => {
     }).then(res=>{
     
       setDiabetic(res.data.data[0].user[0].diabetic)
-      // console.log(res.data.data[0].user[0].diabetic)
-      // setDiabetic(profile.diabetic)
-      // diabetic ? console.log(diabetic):console.log(diabetic)
+  
     }).catch(err=>{
       console.log(err)
     })
@@ -116,6 +126,8 @@ const Store = () => {
 
   const addDetail = (e) => {
     setTodaysList([...todaysList, selectedOption])
+    setTimeActive(false);
+    
 
   }
 
@@ -157,72 +169,152 @@ var result = getFields(allFoodData, "foodName");
       .catch(err => alert(err))
   }
 
-const options = {
-  plugins: {
-    datalabels: {
-      display: false,
-      color: "black",
-      formatter: Math.round,
-      anchor: "end",
-      offset: -20,
-      align: "start"
-    }
-  },
-  legend: {
-    display: false
-  }
-};
-const showFoodValues=()=>{
-  console.log("hello")
- 
-}
 
+const dataObject=allFoodData.map(({ reading_time: x, GI: y, foodName: label }) => ({ x, y, obj: { value: label } }));
+
+
+  const showGI = {
+  labels: allFoodData.map((item) => item.reading_time.slice(0,16)),
+  datasets: [
+    {
+      label: 'GI vs Reading Time',
+      data: allFoodData.map((item) => item.GI),
+      backgroundColor: 'yellow',
+      borderColor: 'blue',
+      borderWidth: 1,
+    },
+  ],
+};
+
+const showGIOptions = {
+  scales: {
+    xAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: 'Reading Time',
+        },
+      },
+    ],
+    yAxes: [
+      {
+        scaleLabel: {
+          display: true,
+          labelString: 'GI',
+        },
+      },
+    ],
+  },
+  tooltips: {
+    callbacks: {
+      label: function (tooltipItem, data) {
+        const dataIndex = tooltipItem.index;
+        const foodName = allFoodData[dataIndex].foodName;
+        const GI = data.datasets[tooltipItem.datasetIndex].data[dataIndex];
+        return foodName + ': ' + GI;
+      },
+    },
+  },
+};
+
+
+const xValues = allFoodData.map((food) => food.reading_time);
+const yValues = allFoodData.map((food) => food.GI);
+const labels = allFoodData.map((food) => food.foodName);
+
+
+const showFood= {
+  labels: labels,
+  datasets: [
+    {
+      label: 'GI vs Reading Time',
+      data: yValues,
+      fill: false,
+      backgroundColor: 'yellow',
+      borderColor: 'blue',
+      borderWidth: 1,
+      lineTension: 0.1,
+    },
+  ],
+  options: {
+    scales: {
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'Reading Time',
+          },
+        },
+      ],
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'GI',
+          },
+        },
+      ],
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          return label + ': ' + tooltipItem.yLabel;
+        },
+      },
+    },
+  },
+};
+
+const deleteFood=(id)=>{
+  axios({
+    method: 'delete',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    url: `http://localhost:4000/food/deletefood/${id}`,
+    data: {
+     
+    }
+
+  })
+    .then(res => {
+      console.log(res);
+      window.location.reload(false);
+
+    })
+    .catch(err => alert(err))
+}
 
   return (
     <div className="store">
+      <h3>Add today's intake</h3>
       <div className="input-n-output">
         <form className="food-inputs" onSubmit={submitHandler}>
-
-          {/* <select value={selectedOption} onChange={e => setSelectedOption(e.target.value)} >
-            <option value="">Select food</option>
-            <option value="food1">food1</option>
-            <option value="food2">food2</option>
-            <option value="food3">food3</option>
-          </select> */}
 
 <input value={selectedOption} placeholder="food" onChange={e => setSelectedOption(e.target.value)} ></input>
 
           <input value={quantity} placeholder='quantity' onChange={e => setQuantity(e.target.value)}></input>
           <input value={GI} placeholder="GI" onChange={e => setGI(e.target.value)}></input>
-          <input value={reading_time} placeholder="reading_time" onChange={e => setreading_time(e.target.value)}></input>
-
-          <button className="add-food" type="submit" onClick={addDetail}>add</button>
-
-        </form>
-
+          <p value={timeActive} className="set-reading-time" onClick={e=>setTimeActive(true)}>reading time</p>
+       {timeActive? 
+      
+       <DateTimePicker 
+          input={false}
+          value={reading_time}
+          onChange={(date) => setreading_time(date)}
+        />:""}
+     
+      <button className="add-food" type="submit" onClick={addDetail}>add</button>
+       </form>
         <div className="output" >
-          <Line datasetIdKey="id"
-          data={ {
-            labels:time,
-                datasets: [
-              {
-                id:1,
-                label: "high alert",
-                data: diabetic?[200,200,200,200,200,200,200,200,200,200,200,200,200,200,200]:[140, 140, 140, 140, 140, 140, 140,140,140,140,140,140,140,140,140],
-                backgroundColor: 'red'
-              },
-              {
-                id:2,
-                label: "today's intake",
-                data:allGI,
-                backgroundColor: 'yellow',
-                dataLabels:{display:true}
-              }
-            ],
-          }} plugins={[ChartDataLabels]} options={options}>hello</Line>
-      {/* {console.log(big)} */}
+       
+
+{toggleFood? <Line data={showFood} />: <Line data={showGI} options={showGIOptions} />}
+<button value={toggleFood} className="toggle-food" onClick={toggleFood?()=>setToggleFood(false):()=>setToggleFood(true)}>{toggleFood?"show GI":"show Food"}</button>
+
         </div>
-          {/* <button onClick={showFoodValues}>food</button> */}
+   
       </div>
       {
         allGI[allGI.length - 1]>=200?<div className="fade-in-out">high glucose</div>:" "
@@ -234,21 +326,23 @@ const showFoodValues=()=>{
           <h4>quantity</h4>
           <h4>GI</h4>
           <h4>reading_time</h4>
+          <h4></h4>
         </div>
 
-        <div className='single-list-head'>
+        <div className='single-list-head' >
           {
             allFoodData.map((a,i) => (
-              <div className="single-list" key={i} >
+              <Link className="single-list" key={i} to={`/food/${a._id}`} >
                 <h6 >{a.foodName}</h6>
                 <h6 >{a.quantity}</h6>
                 <h6 >{a.GI}</h6>
-                <h6 >{a.reading_time}</h6>
-
-              </div>
+                <h6>{a.reading_time.slice(0,16)}</h6>
+                <Link className="delete-food" to="/store" onClick={()=>deleteFood(a._id)} >X</Link>
+         
+              </Link>
             ))
           }
-         
+     
         </div>
       </div>
     </div>

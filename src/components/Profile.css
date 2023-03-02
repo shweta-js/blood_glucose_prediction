@@ -1,5 +1,5 @@
 .profile-details{
-    background-color: #3c2a4d;
+    background-color: #2726433d;
     padding:2rem;
     width: 40%;
     align-items: center;
@@ -7,23 +7,63 @@
     justify-content: center;
     border-radius:10px;
 }
+
 .pro-det{
-    background-color: #3c2a4d;
+  
     display:flex;
     flex-direction: row;
 }
 .pro-p{
     background-color: #3c2a4d;
     color:#fff;
-    border-radius: 50%;
+    border-radius: 10px;
+
 }
 .pro-edit{
     float: right;
     margin:1rem;
-    border-color:#fff;
+   
     border-radius: 10px;
+    border:none;
+        background-color: #3c2a4d5b;
+    color:#3c2a4d;
+    padding:.5rem;
+    font-size: small;
+    width: 4rem;
+    margin-right:.2rem;
 
 }
 .pro-det-edit{
     justify-content: end;
+    
+}
+
+.pro-edit>input{
+    margin:1rem;
+    border-color:red;
+    border-radius: 10px;
+
+
+}
+.pro-val{
+        background-color: #3c2a4d5b;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border:none;
+    
+}
+.pro-val-save{
+        background-color: #3c2a4d5b;
+    border-radius:0 10px 10px 0;
+   margin:0 0 1rem 0;
+    border:none;
+    width:16.5rem;
+}
+.p{
+  
+    border-radius: 10px;
+    padding: 1rem;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
 }

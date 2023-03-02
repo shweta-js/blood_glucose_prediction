@@ -3,15 +3,22 @@
     width:100%;
     length:5rem;
     padding:1rem;
+
     
 }
 .heading{
 color:#e0f0ea;
+text-decoration: none;
+margin-left:4.5rem;
+}
+.heading:hover{
+    color:#c0d1ff;
 }
 .nav-options{
     display: flex;
     justify-content: space-around;
     width: 30%;
+    margin-right:2rem;
 }
 .nav-options>Link:hover{
     color:#646399 ;

@@ -1,0 +1,38 @@
+.color-code{
+    background-color:#e0f0ea;
+    background-color:#95adbe;
+    background-color:#574f7d;
+    background-color:#503a65;
+    background-color:#3c2a4d;
+}
+.singleDataMain{
+    background-color: #95adbe;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 27rem;
+    border-radius: 10px;
+    margin-top:1rem;
+    margin-left:40%;
+    padding:1rem;
+}
+
+.singleDataInputMain{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.singleInputs{
+    margin:0.5rem;
+    padding:0.5rem;
+    border-radius: 10px;
+    border:none;
+    
+}
+
+.picker-activate{
+    width:16rem;
+}
